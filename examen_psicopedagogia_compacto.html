@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen preparatorio · Psicopedagogía</title>
+<style>
+  :root{
+    --ink:#2b2418;
+    --paper:#f6f1e4;
+    --paper-2:#efe7d3;
+    --rule:#cbb892;
+    --accent:#8a3b2b;
+    --accent-2:#3c6e5b;
+    --gold:#c08a2e;
+    --ok:#3c6e5b;
+    --ok-bg:#e3eee7;
+    --bad:#8a3b2b;
+    --bad-bg:#f4e3dd;
+    --card:#fffdf8;
+    --shadow: 0 1px 0 rgba(43,36,24,0.06), 0 8px 24px -16px rgba(43,36,24,0.35);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 10% 0%, rgba(192,138,46,0.08), transparent 40%),
+      radial-gradient(circle at 90% 10%, rgba(60,110,91,0.07), transparent 40%),
+      var(--paper);
+    color:var(--ink);
+    font-family: "Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+    line-height:1.5;
+    padding:0 0 80px 0;
+  }
+  .masthead{
+    border-bottom:3px solid var(--ink);
+    padding:28px 20px 18px;
+    text-align:center;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 27px, rgba(43,36,24,0.035) 27px 28px),
+      var(--paper-2);
+  }
+  .masthead .kicker{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-size:11px;
+    color:var(--accent);
+    font-weight:700;
+  }
+  .masthead h1{
+    font-size:clamp(28px,5vw,46px);
+    margin:6px 0 4px;
+    font-weight:400;
+    letter-spacing:.01em;
+  }
+  .masthead .rule{
+    width:120px;height:2px;background:var(--gold);margin:14px auto 12px;
+  }
+  .masthead .sub{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;
+    color:#5a4f3a;
+    max-width:580px;
+    margin:0 auto;
+  }
+  .masthead .note{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11.5px;
+    color:#8a7c5e;
+    max-width:560px;
+    margin:10px auto 0;
+    font-style:italic;
+  }
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px;}
+
+  .progress-bar{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+    padding:10px 18px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .progress-bar .track{
+    flex:1;height:8px;border-radius:4px;background:var(--paper-2);
+    border:1px solid var(--rule);overflow:hidden;
+  }
+  .progress-bar .fill{
+    height:100%;background:linear-gradient(90deg,var(--gold),var(--accent));
+    width:0%; transition:width .35s ease;
+  }
+  .progress-bar .count{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:12px; font-weight:700; letter-spacing:.04em;
+    white-space:nowrap; color:var(--ink);
+  }
+
+  .section-divider{
+    margin:54px 0 22px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .section-divider .num{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-weight:800; font-size:13px;
+    background:var(--ink); color:var(--paper);
+    width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .section-divider h2{
+    margin:0; font-size:21px; font-weight:600; flex-shrink:0;
+  }
+  .section-divider .line{flex:1;height:1px;background:var(--rule);}
+  .section-intro{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13.5px; color:#5a4f3a; margin:-10px 0 8px; max-width:640px;
+  }
+  .section-sources{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11px; color:#8a7c5e; margin:0 0 22px; max-width:640px;
+    letter-spacing:.02em;
+  }
+  .section-sources b{color:var(--accent-2);}
+
+  .q{
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-radius:3px;
+    box-shadow:var(--shadow);
+    padding:22px 24px 20px;
+    margin-bottom:18px;
+    position:relative;
+  }
+  .q::before{
+    content:"";
+    position:absolute; left:0; top:18px; bottom:18px; width:3px;
+    background:var(--paper-2);
+    border-radius:2px;
+  }
+  .q.correct::before{background:var(--ok);}
+  .q.incorrect::before{background:var(--bad);}
+
+  .q-meta{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:#8a7c5e; margin-bottom:8px; display:flex; gap:10px; align-items:center;
+  }
+  .q-meta .tag{
+    background:var(--paper-2); border:1px solid var(--rule);
+    padding:2px 8px; border-radius:20px; font-weight:700; color:var(--accent);
+  }
+  .q-stem{font-size:17px; margin:0 0 14px; font-weight:500;}
+
+  .options{display:flex; flex-direction:column; gap:9px;}
+  .option{
+    display:flex; align-items:flex-start; gap:10px;
+    border:1px solid var(--rule); background:var(--paper);
+    border-radius:6px; padding:10px 14px; cursor:pointer;
+    transition: background .15s, border-color .15s;
+    font-size:15px;
+  }
+  .option:hover{border-color:var(--gold);}
+  .option input{margin-top:3px; accent-color:var(--accent);}
+  .option.picked{background:var(--paper-2); border-color:var(--ink);}
+  .option.is-correct{background:var(--ok-bg); border-color:var(--ok);}
+  .option.is-wrong{background:var(--bad-bg); border-color:var(--bad);}
+  .option .letter{
+    font-family:"Helvetica Neue",Arial,sans-serif; font-weight:800; font-size:12px;
+    color:#8a7c5e; min-width:16px;
+  }
+
+  .fill-input{
+    font-family:inherit; font-size:15.5px;
+    border:none; border-bottom:2px solid var(--ink);
+    background:transparent; padding:2px 4px; width:220px;
+    color:var(--ink); margin:0 4px;
+  }
+  .fill-input:focus{outline:none; border-color:var(--accent);}
+  .fill-input.is-correct{border-color:var(--ok); background:var(--ok-bg);}
+  .fill-input.is-wrong{border-color:var(--bad); background:var(--bad-bg);}
+  .stem-with-blank{line-height:2;}
+
+  .match-wrap{display:flex; gap:24px; flex-wrap:wrap;}
+  .match-col{flex:1; min-width:220px; display:flex; flex-direction:column; gap:8px;}
+  .match-col-title{
+    font-family:"Helvetica Neue",Arial,sans-serif; font-size:11px;
+    text-transform:uppercase; letter-spacing:.06em; color:#8a7c5e; margin-bottom:2px;
+  }
+  .match-item{
+    border:1px solid var(--rule); border-radius:6px; padding:9px 12px;
+    background:var(--paper); font-size:14.5px; cursor:pointer;
+    transition:background .15s,border-color .15s;
+  }
+  .match-item.left.selected{border-color:var(--accent); background:var(--paper-2); font-weight:700;}
+  .match-item.right{cursor:default;}
+  .match-item.right .pair-label{
+    font-family:"Helvetica Neue",Arial,sans-serif; font-size:10.5px; font-weight:800;
+    color:var(--accent); margin-right:6px;
+  }
+  .match-item.right.is-correct{background:var(--ok-bg); border-color:var(--ok);}
+  .match-item.right.is-wrong{background:var(--bad-bg); border-color:var(--bad);}
+  select.match-select{
+    font-family:inherit; font-size:14px; width:100%;
+    border:1px solid var(--rule); border-radius:6px; padding:7px 8px; background:var(--paper);
+  }
+
+  .drag-pool{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;
+    padding:12px; border:1px dashed var(--rule); border-radius:8px; background:var(--paper);
+    min-height:48px;
+  }
+  .drag-chip{
+    font-family:"Helvetica Neue",Arial,sans-serif; font-size:13.5px;
+    background:var(--card); border:1px solid var(--ink); border-radius:20px;
+    padding:7px 14px; cursor:grab; user-select:none;
+  }
+  .drag-chip:active{cursor:grabbing;}
+  .drop-zones{display:flex; gap:14px; flex-wrap:wrap;}
+  .drop-zone{
+    flex:1; min-width:200px; min-height:90px;
+    border:2px dashed var(--rule); border-radius:8px; padding:10px;
+    background:var(--paper-2);
+  }
+  .drop-zone.over{border-color:var(--gold); background:#fff8e8;}
+  .drop-zone-title{
+    font-family:"Helvetica Neue",Arial,sans-serif; font-weight:800; font-size:12.5px;
+    text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px; color:var(--ink);
+  }
+  .drop-zone .drag-chip.placed-correct{background:var(--ok-bg); border-color:var(--ok);}
+  .drop-zone .drag-chip.placed-wrong{background:var(--bad-bg); border-color:var(--bad);}
+
+  .check-btn{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:var(--ink); color:var(--paper); border:none;
+    padding:9px 20px; border-radius:20px; font-weight:700; font-size:13px;
+    cursor:pointer; margin-top:14px; letter-spacing:.02em;
+  }
+  .check-btn:hover{background:var(--accent);}
+  .check-btn:disabled{opacity:.4; cursor:default;}
+
+  .feedback{
+    margin-top:14px; padding:12px 14px; border-radius:6px;
+    font-family:"Helvetica Neue",Arial,sans-serif; font-size:13.5px; line-height:1.55;
+    display:none;
+  }
+  .feedback.show{display:block;}
+  .feedback.ok{background:var(--ok-bg); border-left:3px solid var(--ok); color:#1f3d31;}
+  .feedback.bad{background:var(--bad-bg); border-left:3px solid var(--bad); color:#4d1f15;}
+  .feedback strong{display:block; margin-bottom:3px; font-size:12px; text-transform:uppercase; letter-spacing:.04em;}
+
+  .results-panel{
+    position:fixed; bottom:0; left:0; right:0;
+    background:var(--ink); color:var(--paper);
+    padding:14px 22px; display:flex; align-items:center; justify-content:space-between;
+    font-family:"Helvetica Neue",Arial,sans-serif; z-index:60;
+    box-shadow:0 -8px 24px -10px rgba(0,0,0,0.4);
+    flex-wrap:wrap; gap:10px;
+  }
+  .results-panel .score-text{font-size:13.5px;}
+  .results-panel .score-text b{color:var(--gold); font-size:16px;}
+  .results-panel button{
+    font-family:inherit; background:var(--gold); color:var(--ink); border:none;
+    padding:9px 18px; border-radius:20px; font-weight:700; font-size:13px; cursor:pointer;
+  }
+  .results-panel button.secondary{background:transparent; color:var(--paper); border:1px solid #6a6048;}
+
+  .final-summary{
+    display:none; background:var(--card); border:1px solid var(--rule);
+    border-radius:6px; padding:26px; margin:30px 0; text-align:center;
+    box-shadow:var(--shadow);
+  }
+  .final-summary.show{display:block;}
+  .final-summary .big-score{font-size:48px; font-weight:700; color:var(--accent); margin:6px 0;}
+  .final-summary h3{margin:0 0 4px; font-weight:600;}
+  .final-summary .breakdown{
+    margin-top:18px; text-align:left; font-family:"Helvetica Neue",Arial,sans-serif; font-size:13.5px;
+  }
+  .final-summary .breakdown-row{
+    display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--paper-2);
+  }
+
+  @media (max-width:600px){
+    .match-wrap{flex-direction:column;}
+    .fill-input{width:150px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kicker">Escuela de Vacaciones · Junio 2026</div>
+  <h1>Examen Preparatorio</h1>
+  <div class="rule"></div>
+  <div class="sub">Psicopedagogía — Memoria y aprendizaje, proceso psicopedagógico, modelos de asesoría (clínico, programas, consulta) y procesos cognitivos. Versión compactada, sin bloques repetidos.</div>
+  <div class="note">Las presentaciones y los apuntes de clase que coincidían en tema se fusionaron en un solo bloque para evitar preguntas duplicadas.</div>
+</div>
+
+<div class="progress-bar">
+  <div class="count" id="progressCount">0 / 0 respondidas</div>
+  <div class="track"><div class="fill" id="progressFill"></div></div>
+  <div class="count" id="progressScore">0 correctas</div>
+</div>
+
+<div class="wrap" id="quizRoot"></div>
+
+<div class="final-summary" id="finalSummary">
+  <h3>Resultado final</h3>
+  <div class="big-score" id="finalScoreText">0%</div>
+  <div id="finalScoreSub" style="font-family:'Helvetica Neue',Arial,sans-serif; font-size:13px; color:#5a4f3a;"></div>
+  <div class="breakdown" id="finalBreakdown"></div>
+</div>
+
+<div class="results-panel">
+  <div class="score-text" id="liveScore">Empecemos: 0 respondidas · <b>0</b> correctas</div>
+  <div style="display:flex; gap:8px;">
+    <button class="secondary" id="scrollTopBtn" type="button">Ir al inicio</button>
+    <button id="finishBtn" type="button">Ver resultado final</button>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   BANCO DE PREGUNTAS — VERSIÓN COMPACTADA, 6 BLOQUES
+   Fusiones realizadas:
+   - Bloque 1: "Memoria y aprendizaje" PDF + Word "Clase 11" (mismo contenido)
+   - Bloque 3: "Modelo Clínico" + "La entrevista" (ambos del mismo PDF de Modelos de asesoría)
+   - Las preguntas de la antigua "Síntesis integradora" se repartieron
+     en los bloques 3 (clínico), 4 (programas) y 5 (consulta)
+   - Bloque 6 es nuevo: contenido de "clase 17 de junio", sin PDF de respaldo
+   ========================================================= */
+
+const sections = [
+
+// ============ BLOQUE 1 — MEMORIA, APRENDIZAJE Y PROCESAMIENTO ============
+{
+  title: "Memoria, aprendizaje y procesamiento de la información",
+  intro: "Codificación, almacenamiento, recuperación, tipos de memoria y el ciclo del procesamiento de la información.",
+  sources: "Fuente: presentación “Memoria y aprendizaje” y apuntes de clase (12 de junio) — contenido idéntico, unificado en un solo bloque.",
+  questions: [
+    {type:"mcq", stem:"¿Cuál es la primera etapa del proceso de memoria?",
+      options:["Recuperación","Almacenamiento","Codificación","Atención selectiva"], correct:2,
+      feedback:"La codificación transforma la información sensorial en una forma que el cerebro puede procesar y almacenar; es el primer paso del ciclo."},
+    {type:"mcq", stem:"Recordar el rostro de una persona es un ejemplo de:",
+      options:["Codificación acústica","Codificación semántica","Codificación visual","Memoria procedimental"], correct:2,
+      feedback:"La codificación visual procesa la información mediante imágenes, como rostros o mapas conceptuales."},
+    {type:"mcq", stem:"¿Qué tipo de codificación se considera la más efectiva para el aprendizaje, ya que implica comprensión y no solo repetición?",
+      options:["Visual","Acústica","Semántica","Sensorial"], correct:2,
+      feedback:"La codificación semántica procesa la información a través de su significado, relacionándola con experiencias previas; por eso favorece un aprendizaje más duradero."},
+    {type:"mcq", stem:"Resolver una operación matemática mentalmente es un ejemplo de:",
+      options:["Memoria sensorial","Memoria a corto plazo","Memoria de trabajo","Memoria semántica"], correct:2,
+      feedback:"La memoria de trabajo manipula activamente la información, como ocurre al hacer cálculos mentales."},
+    {type:"mcq", stem:"¿Cuál es la duración aproximada de la memoria a corto plazo?",
+      options:["Milisegundos","15-30 segundos","Varias horas","Permanente"], correct:1,
+      feedback:"La memoria a corto plazo dura aproximadamente entre 15 y 30 segundos, como al recordar un número mientras lo marcas."},
+    {type:"mcq", stem:"Saber que Guatemala está en Centroamérica corresponde a la memoria a largo plazo de tipo:",
+      options:["Episódica","Procedimental","Semántica","Sensorial"], correct:2,
+      feedback:"La memoria semántica almacena conocimientos generales sobre el mundo, como datos geográficos."},
+    {type:"fill", stem:"Andar en bicicleta es un ejemplo de memoria a largo plazo no declarativa de tipo ____________.",
+      answer:"procedimental",
+      feedback:"La memoria procedimental almacena habilidades automáticas como conducir o andar en bicicleta."},
+    {type:"fill", stem:"La memoria ____________ dura solo milisegundos o segundos, como cuando ves un anuncio mientras conduces.",
+      answer:"sensorial",
+      feedback:"La memoria sensorial es la primera y más breve, captando estímulos del entorno por una fracción de tiempo."},
+    {type:"match", stem:"Une cada tipo de memoria a largo plazo con su ejemplo correspondiente.",
+      left:["Episódica","Semántica","Procedimental"],
+      right:["Tu graduación","Saber que Guatemala está en Centroamérica","Conducir un automóvil"],
+      correctPairs:[0,1,2],
+      feedback:"Episódica = experiencias personales; Semántica = conocimientos generales; Procedimental = habilidades automáticas."},
+    {type:"drag", stem:"Clasifica cada actividad según el tipo de memoria que predomina.",
+      items:["Recordar una receta","Tu primer día de universidad","Resolver una suma mental","Reconocer un sonido"],
+      zones:["Procedimental","Episódica","Memoria de trabajo","Sensorial"],
+      correctZone:[0,1,2,3],
+      feedback:"Recordar una receta = procedimental; primer día de universidad = episódica; suma mental = memoria de trabajo; reconocer un sonido = sensorial."},
+    {type:"mcq", stem:"En el ciclo de procesamiento de la información, ¿qué proceso ocurre justo después de la 'memoria sensorial' y antes de la 'memoria a corto plazo'?",
+      options:["Codificación","Atención","Recuperación","Almacenamiento permanente"], correct:1,
+      feedback:"El esquema del ciclo indica: información del entorno → memoria sensorial → atención → memoria a corto plazo → codificación → memoria a largo plazo → recuperación."},
+    {type:"mcq", stem:"Según el material, ¿qué afirmación resume mejor la relación entre memoria y aprendizaje?",
+      options:["El aprendizaje y la memoria son procesos independientes entre sí","Sin memoria no existe aprendizaje duradero","La memoria solo interviene en la etapa de evaluación","El aprendizaje ocurre exclusivamente en la memoria sensorial"], correct:1,
+      feedback:"El material es explícito: sin memoria no existe aprendizaje duradero, ya que el aprendizaje requiere recibir, procesar, almacenar y recuperar información."}
+  ]
+},
+
+// ============ BLOQUE 2 — PROCESO PSICOPEDAGÓGICO APLICADO ============
+{
+  title: "Proceso psicopedagógico aplicado",
+  intro: "Evaluación, diagnóstico, intervención y seguimiento, junto con técnicas, adaptaciones y el caso aplicado de María.",
+  sources: "Fuente: presentación “Elementos aplicados en la Psicopedagogía” — contenido sin equivalente en los apuntes de clase.",
+  questions: [
+    {type:"mcq", stem:"¿Cuál es la meta directa de la evaluación psicopedagógica?",
+      options:["La intervención","El diagnóstico","El seguimiento","La adaptación curricular"], correct:1,
+      feedback:"La evaluación es un proceso de recolección de información cuya meta es llegar al diagnóstico."},
+    {type:"mcq", stem:"¿Cuál de las siguientes NO es una técnica o instrumento típico de la evaluación psicopedagógica?",
+      options:["Observación","Entrevista o anamnesis","Pruebas psicopedagógicas","Firma de un contrato laboral"], correct:3,
+      feedback:"Las técnicas de evaluación incluyen observación, entrevistas, cuestionarios, pruebas psicopedagógicas y revisión de trabajos escolares; la firma de un contrato no pertenece a este proceso."},
+    {type:"mcq", stem:"El diagnóstico psicopedagógico busca responder, entre otras, a la pregunta:",
+      options:["¿Cuánto cuesta la intervención?","¿Qué necesidades presenta el estudiante?","¿Cuántos estudiantes hay en el aula?","¿Qué docente debe ser despedido?"], correct:1,
+      feedback:"El diagnóstico interpreta los datos de la evaluación para responder qué está ocurriendo, por qué ocurre y qué necesidades presenta el estudiante."},
+    {type:"mcq", stem:"Según el material, el diagnóstico psicopedagógico:",
+      options:["Es etiquetar al estudiante","Es comprender una situación educativa para orientar la intervención","Sustituye siempre a la intervención","Solo lo puede realizar el director del centro"], correct:1,
+      feedback:"Se aclara explícitamente que el diagnóstico NO es etiquetar, sino comprender la situación educativa para orientar la intervención."},
+    {type:"mcq", stem:"¿A quién(es) puede dirigirse la intervención psicopedagógica?",
+      options:["Únicamente al estudiante","Estudiante, docentes, familia e institución educativa","Solo a la familia","Únicamente a la institución educativa"], correct:1,
+      feedback:"La intervención psicopedagógica es un conjunto de acciones planificadas que puede dirigirse al estudiante, docentes, familia o institución educativa."},
+    {type:"mcq", stem:"La técnica Pomodoro, mencionada como ejemplo de técnica de estudio, consiste en:",
+      options:["15 minutos de trabajo y 15 de descanso","25 minutos de trabajo y 5 de descanso","1 hora de trabajo continuo sin pausas","30 minutos de descanso antes de iniciar"], correct:1,
+      feedback:"La técnica Pomodoro propone 25 minutos de trabajo seguidos de 5 minutos de descanso, especialmente útil para estudiantes con problemas de atención."},
+    {type:"fill", stem:"Las adaptaciones curriculares no significan bajar la calidad educativa, sino facilitar el ____________ al aprendizaje.",
+      answer:"acceso",
+      feedback:"El material aclara: 'Adaptar no significa bajar la calidad educativa, sino facilitar el acceso al aprendizaje.'"},
+    {type:"fill", stem:"El proceso de monitoreo y valoración de los avances obtenidos tras una intervención se llama ____________ psicopedagógico.",
+      answer:"seguimiento",
+      feedback:"El seguimiento psicopedagógico responde a preguntas como: ¿funcionó la intervención?, ¿qué avances existen?, ¿qué ajustes deben realizarse?"},
+    {type:"match", stem:"Une cada etapa del proceso psicopedagógico con su función principal.",
+      left:["Evaluación","Diagnóstico","Intervención","Seguimiento"],
+      right:["Recolectar información sobre fortalezas y debilidades","Interpretar los datos obtenidos","Ejecutar acciones planificadas para favorecer el aprendizaje","Valorar si los avances obtenidos son los esperados"],
+      correctPairs:[0,1,2,3],
+      feedback:"El proceso sigue el orden: evaluación (recolectar) → diagnóstico (interpretar) → intervención (actuar) → seguimiento (valorar avances)."},
+    {type:"drag", stem:"Clasifica cada ejemplo según el tipo de adaptación o intervención al que corresponde.",
+      items:["Más tiempo para realizar exámenes","Utilizar bloques o material concreto en matemática","Elaborar un horario semanal de estudio","Sentar al estudiante lejos de distractores"],
+      zones:["Adaptación en evaluación","Adaptación metodológica","Técnica de estudio","Estrategia de atención"],
+      correctZone:[0,1,2,3],
+      feedback:"Más tiempo en examen = adaptación en evaluación; material concreto = adaptación metodológica; horario semanal = técnica de estudio; alejar distractores = estrategia de atención."},
+    {type:"mcq", stem:"En el caso de María (10 años, cuarto primaria), ¿qué dato corresponde más claramente a la fase de evaluación, según la información de la madre y la docente?",
+      options:["El plan de seguimiento a tres meses","Las observaciones de la docente sobre distracción y bajo rendimiento, y el reporte de la madre sobre hábitos de estudio","La conclusión final del diagnóstico","La adaptación curricular ya aplicada"], correct:1,
+      feedback:"Los reportes directos de docente y madre constituyen información recolectada, propia de la fase de evaluación, previa a la interpretación diagnóstica."},
+    {type:"mcq", stem:"Si tres meses después se revisan las calificaciones de María, se entrevista a su docente y se observa nuevamente su comportamiento para decidir si ajustar el plan, esto corresponde a la etapa de:",
+      options:["Evaluación","Diagnóstico","Intervención","Seguimiento"], correct:3,
+      feedback:"Revisar avances y decidir ajustes tres meses después de la intervención corresponde a la etapa de seguimiento, como se describe en el ejemplo del material."},
+    {type:"mcq", stem:"¿Cuál de las siguientes opciones describe mejor la orientación familiar como tipo de intervención?",
+      options:["Una sanción aplicada al estudiante por bajo rendimiento","Una intervención que involucra a la familia porque el problema puede tener factores en el entorno, no solo en el estudiante","Una evaluación exclusiva del docente","Una técnica de codificación visual"], correct:1,
+      feedback:"La orientación familiar reconoce que muchas veces el problema no está únicamente en el estudiante, sino también en factores del entorno familiar."}
+  ]
+},
+
+// ============ BLOQUE 3 — MODELO CLÍNICO Y LA ENTREVISTA (fusionado) ============
+{
+  title: "Modelo Clínico y la entrevista en la relación de ayuda",
+  intro: "Definición, principios, fases del modelo clínico y la entrevista como su herramienta principal, con las destrezas de Rogers y Carkhuff.",
+  sources: "Fuente: presentación “Modelos de asesoría psicopedagógica” + apuntes de clase (12 de junio) — fusionados por tratar el mismo tema.",
+  questions: [
+    {type:"mcq", stem:"El Modelo Clínico también es conocido como:",
+      options:["Modelo de Consulta","Modelo de Counseling o Relación de Ayuda","Modelo de Programas","Modelo Sistémico"], correct:1,
+      feedback:"El Modelo Clínico se denomina también Modelo de Counseling o Modelo de Relación de Ayuda, centrado en la atención individualizada."},
+    {type:"mcq", stem:"¿Qué psicólogo humanista publicó en 1942 'Counseling and Psychotherapy' y afirmó que el foco debe estar en la persona y no en el problema?",
+      options:["B.F. Skinner","Carl Rogers","Lev Vygotsky","Daniel Goleman"], correct:1,
+      feedback:"Carl Rogers, psicólogo humanista, sentó las bases del modelo clínico centrando la atención en la persona, no en el problema."},
+    {type:"mcq", stem:"¿Cuál es la herramienta principal del modelo clínico?",
+      options:["El cuestionario grupal","La entrevista","El informe institucional","La consulta colaborativa"], correct:1,
+      feedback:"La entrevista es la técnica principal del modelo clínico: una intervención individual y directa basada en una relación interpersonal planificada."},
+    {type:"mcq", stem:"En la Fase 1 del modelo clínico (Bisquerra, 1998), ¿de quién suele surgir la iniciativa de solicitar ayuda?",
+      options:["Únicamente del orientador","Del cliente, aunque también pueden ser familiares, tutores o profesores","Exclusivamente del director del centro","De una autoridad externa al centro"], correct:1,
+      feedback:"La iniciativa surge generalmente del cliente, aunque familiares, tutores o profesores también pueden solicitar la ayuda."},
+    {type:"fill", stem:"En la Fase 2 del modelo clínico, llamada ____________, se recopila información, se realizan entrevistas y se clarifica la situación mediante el diagnóstico.",
+      answer:"exploración",
+      feedback:"La Fase 2: Exploración incluye recopilar información, realizar entrevistas y explorar experiencias, sentimientos y percepciones."},
+    {type:"fill", stem:"En la Fase 3 del modelo clínico se potencia la autoestima, la autoaceptación y el ____________, evitando que el orientador imponga el camino a seguir.",
+      answer:"autoconcepto",
+      feedback:"La Fase 3: Tratamiento en función del diagnóstico potencia autoestima, autoaceptación y autoconcepto, con participación activa del cliente."},
+    {type:"match", stem:"Une cada fase del modelo clínico con su descripción.",
+      left:["Fase 1","Fase 2","Fase 3","Fase 4"],
+      right:["Inicio y estructuración de la relación de ayuda","Exploración de experiencias y diagnóstico","Tratamiento en función del diagnóstico","Seguimiento y evaluación de resultados"],
+      correctPairs:[0,1,2,3],
+      feedback:"Orden de Bisquerra (1998): 1) Inicio y estructuración, 2) Exploración, 3) Tratamiento según diagnóstico, 4) Seguimiento y evaluación."},
+    {type:"drag", stem:"Clasifica cada destreza del entrevistador según corresponda al listado de Rogers (1972) y Carkhuff (1981-1986), o si NO forma parte de dicho listado.",
+      items:["Empatía","Auto-revelación","Concreción","Imponer una solución única"],
+      zones:["Sí pertenece al listado","Sí pertenece al listado ","Sí pertenece al listado  ","NO pertenece al listado"],
+      correctZone:[0,1,2,3],
+      feedback:"Empatía, auto-revelación y concreción son destrezas del listado de Rogers y Carkhuff; imponer una solución única contradice la filosofía del modelo clínico."},
+    {type:"mcq", stem:"Durante el proceso de ayuda según Rogers, ¿qué actitud debe mantener el orientador mientras el cliente expresa sus sentimientos?",
+      options:["Juzgar para corregir rápido","Escuchar sin juzgar","Interrumpir para dar consejos inmediatos","Mantenerse distante emocionalmente"], correct:1,
+      feedback:"El orientador debe escuchar sin juzgar, favoreciendo que el cliente exprese libremente sus sentimientos y logre una mejor comprensión de sí mismo."},
+    {type:"mcq", stem:"¿De qué depende, en gran medida, el éxito de una entrevista según el material?",
+      options:["De la duración exacta de la sesión","De la actitud del orientador","Del número de preguntas realizadas","Del lugar físico donde se realice"], correct:1,
+      feedback:"El éxito de una entrevista depende en gran medida de la actitud del orientador, quien debe mantener una postura receptiva."},
+    {type:"mcq", stem:"¿Cuál de las siguientes NO es una característica de la entrevista como técnica del modelo clínico?",
+      options:["Es una intervención individual y directa","Puede tener fines terapéuticos, preventivos y de desarrollo personal","Se basa en una relación interpersonal planificada","Es siempre grupal y se aplica a poblaciones completas"], correct:3,
+      feedback:"La entrevista es individual y directa, no grupal; lo grupal corresponde más bien al modelo de programas."},
+    {type:"mcq", stem:"¿Cuál es el objetivo principal de la entrevista en la relación de ayuda?",
+      options:["Recopilar firmas para un programa","Lograr cambios positivos en la conducta de la persona","Evaluar el desempeño docente","Sustituir la evaluación psicopedagógica completa"], correct:1,
+      feedback:"El objetivo de la entrevista es lograr cambios positivos en la conducta de la persona, trabajando aspectos cognitivos y emocionales."},
+    {type:"match", stem:"Une cada destreza del entrevistador con su idea asociada.",
+      left:["Empatía","Auto-revelación","Personalización"],
+      right:["Comprender la experiencia interna de la otra persona","El orientador comparte algo de su propia experiencia cuando es pertinente","Ayudar al cliente a asumir su propia responsabilidad en la situación"],
+      correctPairs:[0,1,2],
+      feedback:"Estas son tres de las nueve destrezas desarrolladas por Rogers y Carkhuff para guiar la entrevista en la relación de ayuda."},
+    {type:"mcq", stem:"¿Cuál de las siguientes características pertenece al modelo clínico y NO al modelo de programas?",
+      options:["Carácter preventivo","Trabajo colaborativo","Relación directa orientador-cliente","Dirigido a grupos"], correct:2,
+      feedback:"El modelo clínico se basa en la relación directa orientador-cliente y la atención individualizada, a diferencia del modelo de programas, que es grupal y preventivo."},
+    {type:"mcq", stem:"Si el psicopedagogo decide entrevistar individualmente a un estudiante para explorar sus emociones y vivencias personales, está aplicando principalmente el:",
+      options:["Modelo de Programas","Modelo Clínico","Modelo de Consulta organizacional","Modelo de evaluación sumativa"], correct:1,
+      feedback:"La entrevista individual y directa centrada en la vivencia personal del estudiante corresponde al modelo clínico."}
+  ]
+},
+
+// ============ BLOQUE 4 — MODELO DE PROGRAMAS ============
+{
+  title: "Modelo de Programas",
+  intro: "Características preventivas y grupales del modelo de programas, sus elementos esenciales y las premisas de Hargens y Gysbers.",
+  sources: "Fuente: presentación “Modelos de asesoría psicopedagógica” + apuntes de clase (12 y 15 de junio).",
+  questions: [
+    {type:"mcq", stem:"A diferencia del modelo clínico, el modelo de programas se caracteriza por ser:",
+      options:["Individual y remedial","Grupal y preventivo","Terapéutico y reactivo","Exclusivo para casos de crisis"], correct:1,
+      feedback:"El modelo de programas es grupal, preventivo y actúa antes de que aparezca la dificultad, a diferencia del modelo clínico (individual y remedial)."},
+    {type:"mcq", stem:"Un programa, según la definición del material, es una intervención:",
+      options:["Espontánea y sin planificación","Preventiva, educativa, planificada, sistemática, basada en necesidades reales y dirigida a grupos","Exclusivamente correctiva","Dirigida únicamente a un solo estudiante en crisis"], correct:1,
+      feedback:"Un programa es una serie de actividades organizadas, preventivas y planificadas, dirigidas a grupos para responder a necesidades detectadas."},
+    {type:"mcq", stem:"¿Cuál es el primer elemento esencial de todo programa psicopedagógico?",
+      options:["La evaluación final","La detección de necesidades","La firma de convenios institucionales","El cronograma de vacaciones"], correct:1,
+      feedback:"Antes de intervenir se debe detectar qué ocurre, qué necesitan los estudiantes y qué problema existe; este es el primer elemento esencial."},
+    {type:"mcq", stem:"Según Hargens y Gysbers (1984), ¿cuál de las siguientes es una de las cuatro premisas del modelo de programas?",
+      options:["El programa puede carecer de evaluación","Los programas de orientación han de ser siempre fruto del trabajo en equipo","El programa debe dirigirse a un solo estudiante","La metodología es opcional"], correct:1,
+      feedback:"Una de las cuatro premisas establece que los programas de orientación han de ser siempre fruto del trabajo en equipo."},
+    {type:"mcq", stem:"¿Cuál de las siguientes NO es una de las condiciones necesarias para implementar programas, según el material?",
+      options:["Centro educativo comprometido","Orientador especializado","Recursos disponibles","Ausencia total de evaluación"], correct:3,
+      feedback:"Las condiciones incluyen centro comprometido, orientador especializado, recursos, trabajo colaborativo, tiempo planificado y evaluación continua; la ausencia de evaluación contradice esto."},
+    {type:"fill", stem:"El programa debe tener objetivos, metodología, personal profesional, contenidos, evaluación, materiales y recursos, así como actividades y ____________.",
+      answer:"estrategias",
+      feedback:"El listado de elementos que debe tener el programa incluye actividades y estrategias como componente final."},
+    {type:"fill", stem:"Los programas de orientación han de tener un carácter ____________, lo que significa que actúan antes de que aparezca la dificultad.",
+      answer:"preventivo",
+      feedback:"Una de las premisas de Hargens y Gysbers indica que los programas han de tener carácter preventivo."},
+    {type:"match", stem:"Une cada tipo de programa con su finalidad principal.",
+      left:["Desarrollo personal","Orientación profesional","Procesos de aprendizaje"],
+      right:["Desarrollar competencias cognitivas para afrontar situaciones cotidianas y complicadas","Elegir adecuadamente la carrera y enfrentarse al mundo laboral","Prevenir problemas de aprendizaje y desarrollar competencias para estudiar"],
+      correctPairs:[0,1,2],
+      feedback:"Desarrollo personal = salud mental y afrontamiento; Orientación profesional = elección de carrera; Procesos de aprendizaje = prevención y técnicas de estudio."},
+    {type:"drag", stem:"Clasifica cada característica según corresponda al Modelo Clínico o al Modelo de Programas.",
+      items:["Actúa cuando aparece la dificultad","Actúa antes de que aparezca la dificultad","Relación orientador-cliente","Trabajo colaborativo"],
+      zones:["Modelo Clínico","Modelo de Programas","Modelo Clínico ","Modelo de Programas "],
+      correctZone:[0,1,2,3],
+      feedback:"Modelo Clínico: remedial, relación orientador-cliente. Modelo de Programas: preventivo, trabajo colaborativo."},
+    {type:"mcq", stem:"¿Cuál de los siguientes es un beneficio del modelo de programas mencionado en el material?",
+      options:["Aísla al orientador del resto del equipo docente","Fortalece la relación entre la escuela y la comunidad","Elimina la necesidad de evaluación","Reduce la participación de los estudiantes"], correct:1,
+      feedback:"Entre los beneficios se menciona que fortalece la relación entre la escuela y la comunidad, además de responder a necesidades reales del contexto."},
+    {type:"mcq", stem:"¿Cuál de las siguientes opciones es un ejemplo de mini programa psicopedagógico mencionado como propuesta de actividad en clase?",
+      options:["Diseño de un examen de admisión universitaria","Programa de prevención del bullying","Plan de jubilación docente","Auditoría financiera institucional"], correct:1,
+      feedback:"Entre los temas propuestos para diseñar un mini programa están: prevención del bullying, técnicas de estudio, educación emocional, uso responsable de redes sociales e inclusión educativa."},
+    {type:"mcq", stem:"Si el centro decide trabajar de forma preventiva con todo un grado sobre hábitos de estudio, en lugar de atender a un solo estudiante en crisis, está aplicando el:",
+      options:["Modelo Clínico","Modelo de Programas","Modelo de Consulta exclusivamente individual","Ninguno de los anteriores"], correct:1,
+      feedback:"Si la intervención se dirige a todo el grupo de forma preventiva, corresponde al modelo de programas, por su carácter grupal y preventivo."}
+  ]
+},
+
+// ============ BLOQUE 5 — MODELO DE CONSULTA ============
+{
+  title: "Modelo de Consulta",
+  intro: "Relación triádica entre consultor, consultante y cliente; diferencias con el counseling y campos de aplicación.",
+  sources: "Fuente: presentación “Modelos de asesoría psicopedagógica” + apuntes de clase (15 de junio).",
+  questions: [
+    {type:"mcq", stem:"El modelo de consulta se define como una relación profesional entre:",
+      options:["Un orientador y un alumno, exclusivamente","Un consultor y un consultante que trabajan conjuntamente para ayudar a una tercera persona o institución","Dos psicólogos clínicos en sesión privada","Un docente y los padres de familia únicamente"], correct:1,
+      feedback:"La consulta es una relación profesional entre consultor y consultante que colaboran para ayudar a un tercero (el cliente)."},
+    {type:"mcq", stem:"En la relación triádica del modelo de consulta, ¿quién suele ocupar el rol de 'consultante'?",
+      options:["El alumno","El orientador o psicopedagogo","El docente, tutor, padres o directivos","La institución educativa en abstracto"], correct:2,
+      feedback:"El consultante suele ser el docente, tutor, padres o directivos, quien recibe la asesoría del consultor para ayudar al cliente."},
+    {type:"mcq", stem:"¿Quién ocupa el rol de 'cliente' en la relación triádica del modelo de consulta?",
+      options:["El orientador","El psicólogo educativo","El alumno, grupo o institución","El consultor"], correct:2,
+      feedback:"El cliente es la persona o entidad que finalmente recibe el beneficio indirecto de la consulta: el alumno, grupo o institución."},
+    {type:"mcq", stem:"¿Cuál es la diferencia principal entre 'consulta' y 'counseling' en cuanto al tipo de intervención?",
+      options:["La consulta es directa y el counseling es indirecto","La consulta es indirecta (a través de un consultante) y el counseling es directo (orientador-cliente)","Ambos son siempre indirectos","Ambos son siempre directos"], correct:1,
+      feedback:"En la consulta, el orientador ayuda al docente y este ayuda al alumno (intervención indirecta); en el counseling, la relación es directa orientador-cliente."},
+    {type:"mcq", stem:"Cuando un psicopedagogo consulta con un psiquiatra sobre un estudiante, ¿a qué campo del modelo de consulta corresponde este ejemplo?",
+      options:["Campo organizacional","Campo educativo","Campo de salud mental","Campo administrativo"], correct:2,
+      feedback:"El ejemplo de consulta entre psicopedagogo y psiquiatra sobre un estudiante corresponde al campo de salud mental."},
+    {type:"mcq", stem:"El director que solicita asesoría para mejorar el plan de acción tutorial es un ejemplo del campo:",
+      options:["De salud mental","Organizacional","Educativo","Familiar"], correct:1,
+      feedback:"Solicitar asesoría institucional, como mejorar un plan de acción tutorial, corresponde al campo organizacional."},
+    {type:"fill", stem:"En la consulta colaborativa, a diferencia de la consulta tradicional, el orientador se implica de forma ____________.",
+      answer:"directa",
+      feedback:"En la consulta colaborativa intervienen varios profesionales y el orientador se implica de forma directa, a diferencia del modelo de consulta tradicional."},
+    {type:"fill", stem:"La primera fase del modelo de consulta consiste en establecer la ____________ entre consultor y consultante.",
+      answer:"relación",
+      feedback:"La Fase 1 del modelo de consulta es establecer la relación entre consultor y consultante, antes de analizar la situación."},
+    {type:"match", stem:"Une cada actor de la relación triádica con su descripción habitual.",
+      left:["Consultor","Consultante","Cliente"],
+      right:["Orientador, psicopedagogo o psicólogo educativo","Docente, tutor, padres o directivos","Alumno, grupo o institución"],
+      correctPairs:[0,1,2],
+      feedback:"Consultor (quien asesora), Consultante (quien recibe la asesoría y actúa) y Cliente (quien finalmente se beneficia)."},
+    {type:"drag", stem:"Clasifica cada ejemplo según el campo del modelo de consulta al que pertenece.",
+      items:["Psicopedagogo consulta a un psiquiatra sobre un estudiante","Director solicita asesoría para el plan de acción tutorial","Docente consulta al orientador sobre un estudiante con discapacidad"],
+      zones:["Campo de salud mental","Campo organizacional","Campo educativo"],
+      correctZone:[0,1,2],
+      feedback:"Salud mental: psicopedagogo-psiquiatra. Organizacional: director y plan de acción tutorial. Educativo: docente y orientador sobre estrategias para un estudiante."},
+    {type:"mcq", stem:"Ante el caso de un estudiante de sexto primaria con bajo rendimiento, problemas de conducta y conflictos familiares, ¿qué pregunta generadora plantea el material para reflexionar sobre el trabajo en equipo?",
+      options:["¿Cuánto cuesta contratar a un especialista externo?","¿Qué beneficios tiene trabajar con otros profesionales?","¿Debe expulsarse al estudiante?","¿Quién debe pagar la consulta?"], correct:1,
+      feedback:"Una de las preguntas generadoras del caso es: ¿Qué beneficios tiene trabajar con otros profesionales?, invitando a reflexionar sobre el valor del trabajo colaborativo."},
+    {type:"mcq", stem:"¿Cuál de las siguientes afirmaciones describe mejor el modelo de consulta en comparación con el modelo de programas?",
+      options:["Ambos son exactamente el mismo modelo con distinto nombre","El modelo de consulta involucra una relación entre profesionales para ayudar indirectamente a un tercero, mientras que el modelo de programas es una intervención grupal directa y preventiva","El modelo de consulta solo puede usarse en universidades","El modelo de programas siempre requiere de un consultante"], correct:1,
+      feedback:"El modelo de consulta se centra en la relación entre profesionales (consultor-consultante) para beneficiar indirectamente a un cliente, mientras que el modelo de programas es una intervención grupal, preventiva y directa hacia los estudiantes."},
+    {type:"mcq", stem:"Si el psicopedagogo asesora a la docente de un estudiante sobre estrategias para trabajar con él en el aula, sin intervenir directamente con el estudiante, está aplicando el:",
+      options:["Modelo Clínico","Modelo de Programas","Modelo de Consulta","Modelo de evaluación psicopedagógica"], correct:2,
+      feedback:"Asesorar al docente para que él ayude al estudiante es una intervención indirecta característica del modelo de consulta (campo educativo)."}
+  ]
+},
+
+// ============ BLOQUE 6 — PENSAMIENTO, LENGUAJE, MOTIVACIÓN E INTELIGENCIA EMOCIONAL ============
+{
+  title: "Pensamiento, lenguaje, motivación e inteligencia emocional",
+  intro: "Procesos cognitivos y socioemocionales: pensamiento, lenguaje (verbal, no verbal e interno), teoría de la autodeterminación, tipos de motivación e inteligencia emocional.",
+  sources: "Fuente: apuntes de clase (17 de junio) — bloque sin presentación de respaldo en PDF.",
+  questions: [
+    {type:"mcq", stem:"Según Neisser (1967), la cognición comprende todos los procesos mediante los cuales la información es:",
+      options:["Eliminada y olvidada","Transformada, almacenada y utilizada","Únicamente memorizada de forma literal","Solo transmitida de forma verbal"], correct:1,
+      feedback:"Neisser define la cognición como el conjunto de procesos por los cuales la información es transformada, almacenada y utilizada."},
+    {type:"mcq", stem:"¿Qué psicólogo ruso sostenía que 'el lenguaje no solo comunica pensamientos; también ayuda a construirlos'?",
+      options:["Daniel Goleman","Lev Vygotsky","Edward Deci","Antonio Damasio"], correct:1,
+      feedback:"Lev Vygotsky desarrolló ampliamente la idea de que el lenguaje, especialmente el lenguaje interno, ayuda a construir el pensamiento."},
+    {type:"mcq", stem:"El diálogo que una persona mantiene consigo misma, como 'puedo resolver este problema', se denomina:",
+      options:["Lenguaje no verbal","Lenguaje interno","Paralingüística","Proxémica"], correct:1,
+      feedback:"El lenguaje interno es el concepto desarrollado por Vygotsky para el diálogo que una persona mantiene consigo misma, y que influye en autoestima y motivación."},
+    {type:"mcq", stem:"Cruzar los brazos o levantar el pulgar son ejemplos de:",
+      options:["Lenguaje verbal escrito","Lenguaje no verbal (gestos)","Lenguaje interno","Regulación introyectada"], correct:1,
+      feedback:"Los gestos forman parte del lenguaje no verbal, que comunica emociones, actitudes e intenciones sin palabras."},
+    {type:"mcq", stem:"Según la Teoría de la Autodeterminación de Deci y Ryan, ¿cuáles son las tres necesidades psicológicas básicas?",
+      options:["Alimentación, sueño y ejercicio","Autonomía, competencia y relación con otros","Dinero, estatus y poder","Memoria, atención y lenguaje"], correct:1,
+      feedback:"Deci y Ryan identifican autonomía, competencia y relación con otros como las tres necesidades psicológicas básicas que, al satisfacerse, aumentan la motivación intrínseca."},
+    {type:"mcq", stem:"Estudiar por el simple placer de aprender un idioma es un ejemplo de motivación:",
+      options:["Extrínseca","Intrínseca","Por regulación externa","Por desmotivación"], correct:1,
+      feedback:"La motivación intrínseca ocurre cuando la conducta se realiza por satisfacción personal o interés propio, como aprender un idioma por interés."},
+    {type:"fill", stem:"La inteligencia emocional fue propuesta por Peter Salovey y John Mayer, y popularizada por ____________.",
+      answer:"goleman",
+      feedback:"Daniel Goleman popularizó el concepto de inteligencia emocional, propuesto originalmente por Salovey y Mayer."},
+    {type:"fill", stem:"Decir 'estudio porque mis padres me obligan' es un ejemplo de regulación ____________, donde la conducta depende totalmente de recompensa o castigo.",
+      answer:"externa",
+      feedback:"La regulación externa es aquella en la que la conducta depende totalmente de una recompensa o un castigo impuesto desde afuera."},
+    {type:"match", stem:"Une cada componente de la inteligencia emocional (Goleman) con su ejemplo.",
+      left:["Autoconocimiento","Autorregulación","Empatía"],
+      right:["Reconocer 'estoy ansioso porque tengo miedo de cometer errores'","Respirar profundamente antes de responder en una discusión","Detectar que un estudiante está frustrado aunque no lo exprese"],
+      correctPairs:[0,1,2],
+      feedback:"Autoconocimiento = reconocer las propias emociones; Autorregulación = manejo de emociones; Empatía = comprender emociones ajenas."},
+    {type:"drag", stem:"Clasifica cada frase de diálogo interno según el tipo de regulación motivacional al que corresponde.",
+      items:["No veo para qué estudiar","Estudio porque mis padres me obligan","Esta materia es importante para mi carrera","Debo sacar buenas notas para no sentirme culpable"],
+      zones:["Desmotivación (amotivación)","Regulación externa","Regulación identificada","Regulación introyectada"],
+      correctZone:[0,1,2,3],
+      feedback:"'No veo para qué estudiar' = amotivación; 'mis padres me obligan' = regulación externa; 'es importante para mi carrera' = regulación identificada; 'para no sentirme culpable' = regulación introyectada."},
+    {type:"mcq", stem:"Según Antonio Damasio, mencionado en el material, las emociones son fundamentales para:",
+      options:["Evitar cualquier proceso de pensamiento","La toma de decisiones racionales","Eliminar la memoria a corto plazo","Sustituir el lenguaje verbal"], correct:1,
+      feedback:"Según Damasio, las emociones son fundamentales para la toma de decisiones racionales, ya que emoción y cognición trabajan conjuntamente."},
+    {type:"mcq", stem:"¿Cuál de las siguientes emociones se menciona como favorecedora de la atención, la creatividad y la memoria, en contraste con la ansiedad intensa o el estrés excesivo?",
+      options:["El miedo","La curiosidad","La desmotivación","La frustración"], correct:1,
+      feedback:"Emociones positivas como la alegría, la curiosidad y el interés favorecen la atención, la creatividad y la memoria, mientras que la ansiedad intensa puede dificultar el desempeño académico."}
+  ]
+}
+];
+
+/* =========================================================
+   RENDERIZADO
+   ========================================================= */
+
+let totalAnswered = 0;
+let totalCorrect = 0;
+const totalQuestions = sections.reduce((acc,s)=>acc+s.questions.length,0);
+const answeredState = {};
+
+function shuffleArrayIndices(n){
+  const arr = Array.from({length:n}, (_,i)=>i);
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function updateProgress(){
+  document.getElementById('progressCount').textContent = totalAnswered + ' / ' + totalQuestions + ' respondidas';
+  document.getElementById('progressFill').style.width = (totalAnswered/totalQuestions*100) + '%';
+  document.getElementById('progressScore').textContent = totalCorrect + ' correctas';
+  document.getElementById('liveScore').innerHTML = totalAnswered + ' de ' + totalQuestions + ' respondidas · <b>' + totalCorrect + '</b> correctas';
+}
+
+function markAnswered(sectionIdx, qIdx, isCorrect, qElement){
+  const key = sectionIdx+'-'+qIdx;
+  if(!answeredState[key]){
+    answeredState[key] = true;
+    totalAnswered++;
+    if(isCorrect) totalCorrect++;
+    updateProgress();
+  } else {
+    return;
+  }
+  qElement.classList.remove('correct','incorrect');
+  qElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+}
+
+function buildFeedback(container, isCorrect, text){
+  const fb = document.createElement('div');
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'bad');
+  fb.innerHTML = '<strong>' + (isCorrect ? '✓ Correcto' : '✕ Para repasar') + '</strong>' + text;
+  container.appendChild(fb);
+}
+
+function renderMCQ(q, sectionIdx, qIdx, container){
+  const optionsWrap = document.createElement('div');
+  optionsWrap.className = 'options';
+  const order = shuffleArrayIndices(q.options.length);
+  let answered = false;
+
+  order.forEach((origIdx)=>{
+    const opt = document.createElement('label');
+    opt.className = 'option';
+    const letter = document.createElement('span');
+    letter.className = 'letter';
+    letter.textContent = '○';
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'q-'+sectionIdx+'-'+qIdx;
+    const textSpan = document.createElement('span');
+    textSpan.textContent = q.options[origIdx];
+    opt.appendChild(letter);
+    opt.appendChild(input);
+    opt.appendChild(textSpan);
+
+    input.addEventListener('change', ()=>{
+      if(answered) return;
+      answered = true;
+      const isCorrect = origIdx === q.correct;
+      Array.from(optionsWrap.children).forEach((el)=>{
+        el.classList.add('picked');
+      });
+      opt.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+      if(!isCorrect){
+        const correctLabel = q.options[q.correct];
+        Array.from(optionsWrap.children).forEach((el)=>{
+          if(el.textContent.includes(correctLabel)) el.classList.add('is-correct');
+        });
+      }
+      const qEl = container.closest('.q');
+      markAnswered(sectionIdx, qIdx, isCorrect, qEl);
+      buildFeedback(container, isCorrect, ' ' + q.feedback);
+    });
+
+    optionsWrap.appendChild(opt);
+  });
+  container.appendChild(optionsWrap);
+}
+
+function renderFill(q, sectionIdx, qIdx, container){
+  const stemWrap = container.querySelector('.q-stem');
+  const parts = q.stem.split('____________');
+  stemWrap.innerHTML = '';
+  stemWrap.classList.add('stem-with-blank');
+  stemWrap.appendChild(document.createTextNode(parts[0]));
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'fill-input';
+  input.placeholder = 'tu respuesta';
+  stemWrap.appendChild(input);
+  stemWrap.appendChild(document.createTextNode(parts[1] || ''));
+
+  const btn = document.createElement('button');
+  btn.className = 'check-btn';
+  btn.textContent = 'Comprobar respuesta';
+  let answered = false;
+  btn.addEventListener('click', ()=>{
+    if(answered) return;
+    answered = true;
+    const val = input.value.trim().toLowerCase();
+    const correctVal = q.answer.toLowerCase();
+    const isCorrect = val === correctVal || (val.length>3 && (val.includes(correctVal) || correctVal.includes(val)));
+    input.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+    input.disabled = true;
+    btn.disabled = true;
+    const qEl = container.closest('.q');
+    markAnswered(sectionIdx, qIdx, isCorrect, qEl);
+    let txt = ' ' + q.feedback;
+    if(!isCorrect) txt += ' <br><em>Respuesta esperada: "' + q.answer + '"</em>';
+    buildFeedback(container, isCorrect, txt);
+  });
+  container.appendChild(btn);
+}
+
+function renderMatch(q, sectionIdx, qIdx, container){
+  const wrap = document.createElement('div');
+  wrap.className = 'match-wrap';
+
+  const leftCol = document.createElement('div');
+  leftCol.className = 'match-col';
+  const leftTitle = document.createElement('div');
+  leftTitle.className = 'match-col-title';
+  leftTitle.textContent = 'Concepto';
+  leftCol.appendChild(leftTitle);
+
+  const rightCol = document.createElement('div');
+  rightCol.className = 'match-col';
+  const rightTitle = document.createElement('div');
+  rightTitle.className = 'match-col-title';
+  rightTitle.textContent = 'Asignar correspondencia';
+  rightCol.appendChild(rightTitle);
+
+  const shuffledRightOrder = shuffleArrayIndices(q.right.length);
+  const selects = [];
+
+  q.left.forEach((leftText, i)=>{
+    const item = document.createElement('div');
+    item.className = 'match-item left';
+    item.textContent = (i+1) + '. ' + leftText;
+    leftCol.appendChild(item);
+  });
+
+  q.left.forEach((leftText, i)=>{
+    const rowWrap = document.createElement('div');
+    rowWrap.className = 'match-item right';
+    const label = document.createElement('span');
+    label.className = 'pair-label';
+    label.textContent = (i+1) + ' →';
+    const select = document.createElement('select');
+    select.className = 'match-select';
+    const blankOpt = document.createElement('option');
+    blankOpt.value = '';
+    blankOpt.textContent = '— elige una opción —';
+    select.appendChild(blankOpt);
+    shuffledRightOrder.forEach((origIdx)=>{
+      const o = document.createElement('option');
+      o.value = origIdx;
+      o.textContent = q.right[origIdx];
+      select.appendChild(o);
+    });
+    selects.push({select, expectedIdx:i, rowWrap});
+    rowWrap.appendChild(label);
+    rowWrap.appendChild(select);
+    rightCol.appendChild(rowWrap);
+  });
+
+  wrap.appendChild(leftCol);
+  wrap.appendChild(rightCol);
+  container.appendChild(wrap);
+
+  const btn = document.createElement('button');
+  btn.className = 'check-btn';
+  btn.textContent = 'Comprobar uniones';
+  let answered = false;
+  btn.addEventListener('click', ()=>{
+    if(answered) return;
+    const allFilled = selects.every(s=>s.select.value !== '');
+    if(!allFilled){
+      btn.textContent = 'Completa todas las uniones primero';
+      setTimeout(()=>{btn.textContent='Comprobar uniones';},1500);
+      return;
+    }
+    answered = true;
+    let allCorrect = true;
+    selects.forEach(s=>{
+      const chosen = parseInt(s.select.value,10);
+      const correct = chosen === q.correctPairs[s.expectedIdx];
+      if(!correct) allCorrect = false;
+      s.rowWrap.classList.add(correct ? 'is-correct' : 'is-wrong');
+      s.select.disabled = true;
+    });
+    btn.disabled = true;
+    const qEl = container.closest('.q');
+    markAnswered(sectionIdx, qIdx, allCorrect, qEl);
+    buildFeedback(container, allCorrect, ' ' + q.feedback);
+  });
+  container.appendChild(btn);
+}
+
+function renderDrag(q, sectionIdx, qIdx, container){
+  const pool = document.createElement('div');
+  pool.className = 'drag-pool';
+
+  const dropWrap = document.createElement('div');
+  dropWrap.className = 'drop-zones';
+
+  const itemOrder = shuffleArrayIndices(q.items.length);
+
+  itemOrder.forEach((origIdx)=>{
+    const chip = document.createElement('div');
+    chip.className = 'drag-chip';
+    chip.textContent = q.items[origIdx];
+    chip.draggable = true;
+    chip.dataset.origIdx = origIdx;
+    chip.addEventListener('dragstart', (e)=>{
+      e.dataTransfer.setData('text/plain', origIdx);
+    });
+    pool.appendChild(chip);
+  });
+
+  q.zones.forEach((zoneName, zoneIdx)=>{
+    const zone = document.createElement('div');
+    zone.className = 'drop-zone';
+    zone.dataset.zoneIdx = zoneIdx;
+    const title = document.createElement('div');
+    title.className = 'drop-zone-title';
+    title.textContent = zoneName.trim();
+    zone.appendChild(title);
+
+    zone.addEventListener('dragover', (e)=>{ e.preventDefault(); zone.classList.add('over'); });
+    zone.addEventListener('dragleave', ()=>{ zone.classList.remove('over'); });
+    zone.addEventListener('drop', (e)=>{
+      e.preventDefault();
+      zone.classList.remove('over');
+      const origIdx = e.dataTransfer.getData('text/plain');
+      const chip = container.querySelector('[data-orig-idx="'+origIdx+'"]');
+      if(chip){
+        zone.appendChild(chip);
+      }
+    });
+    dropWrap.appendChild(zone);
+  });
+
+  container.appendChild(pool);
+  container.appendChild(dropWrap);
+
+  const hint = document.createElement('div');
+  hint.style.fontFamily = "'Helvetica Neue',Arial,sans-serif";
+  hint.style.fontSize = '12px';
+  hint.style.color = '#8a7c5e';
+  hint.style.marginTop = '8px';
+  hint.textContent = 'Arrastra cada ficha hacia la categoría que le corresponde.';
+  container.appendChild(hint);
+
+  const btn = document.createElement('button');
+  btn.className = 'check-btn';
+  btn.textContent = 'Comprobar clasificación';
+  let answered = false;
+  btn.addEventListener('click', ()=>{
+    if(answered) return;
+    const allPlaced = q.items.every((_, idx)=> container.querySelector('[data-orig-idx="'+idx+'"]').closest('.drop-zone') !== null);
+    if(!allPlaced){
+      btn.textContent = 'Coloca todas las fichas primero';
+      setTimeout(()=>{btn.textContent='Comprobar clasificación';},1500);
+      return;
+    }
+    answered = true;
+    let allCorrect = true;
+    q.items.forEach((_, origIdx)=>{
+      const chip = container.querySelector('[data-orig-idx="'+origIdx+'"]');
+      const zoneEl = chip.closest('.drop-zone');
+      const zoneIdx = parseInt(zoneEl.dataset.zoneIdx,10);
+      const correct = zoneIdx === q.correctZone[origIdx];
+      if(!correct) allCorrect = false;
+      chip.classList.add(correct ? 'placed-correct' : 'placed-wrong');
+      chip.draggable = false;
+    });
+    btn.disabled = true;
+    const qEl = container.closest('.q');
+    markAnswered(sectionIdx, qIdx, allCorrect, qEl);
+    buildFeedback(container, allCorrect, ' ' + q.feedback);
+  });
+  container.appendChild(btn);
+}
+
+function typeLabel(type){
+  switch(type){
+    case 'mcq': return 'Selección múltiple';
+    case 'fill': return 'Completar concepto';
+    case 'match': return 'Unir conceptos';
+    case 'drag': return 'Arrastrar a categorías';
+    default: return '';
+  }
+}
+
+function renderAll(){
+  const root = document.getElementById('quizRoot');
+  let globalQNum = 0;
+
+  sections.forEach((section, sectionIdx)=>{
+    const divider = document.createElement('div');
+    divider.className = 'section-divider';
+    divider.innerHTML = '<div class="num">' + (sectionIdx+1) + '</div><h2>' + section.title + '</h2><div class="line"></div>';
+    root.appendChild(divider);
+
+    const intro = document.createElement('div');
+    intro.className = 'section-intro';
+    intro.textContent = section.intro;
+    root.appendChild(intro);
+
+    const src = document.createElement('div');
+    src.className = 'section-sources';
+    src.innerHTML = section.sources;
+    root.appendChild(src);
+
+    section.questions.forEach((q, qIdx)=>{
+      globalQNum++;
+      const qEl = document.createElement('div');
+      qEl.className = 'q';
+
+      const meta = document.createElement('div');
+      meta.className = 'q-meta';
+      meta.innerHTML = '<span>Pregunta ' + globalQNum + ' de ' + totalQuestions + '</span><span class="tag">' + typeLabel(q.type) + '</span>';
+      qEl.appendChild(meta);
+
+      const stem = document.createElement('p');
+      stem.className = 'q-stem';
+      stem.textContent = q.stem;
+      qEl.appendChild(stem);
+
+      const body = document.createElement('div');
+      body.className = 'q-body';
+      qEl.appendChild(body);
+
+      root.appendChild(qEl);
+
+      if(q.type === 'mcq') renderMCQ(q, sectionIdx, qIdx, body);
+      else if(q.type === 'fill') renderFill(q, sectionIdx, qIdx, qEl);
+      else if(q.type === 'match') renderMatch(q, sectionIdx, qIdx, body);
+      else if(q.type === 'drag') renderDrag(q, sectionIdx, qIdx, body);
+    });
+  });
+
+  updateProgress();
+}
+
+renderAll();
+
+document.getElementById('scrollTopBtn').addEventListener('click', ()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+document.getElementById('finishBtn').addEventListener('click', ()=>{
+  const finalSummary = document.getElementById('finalSummary');
+  const pct = Math.round((totalCorrect/totalQuestions)*100);
+  document.getElementById('finalScoreText').textContent = pct + '%';
+  document.getElementById('finalScoreSub').textContent = totalCorrect + ' correctas de ' + totalAnswered + ' respondidas (' + totalQuestions + ' preguntas en total)';
+
+  const breakdown = document.getElementById('finalBreakdown');
+  breakdown.innerHTML = '';
+  sections.forEach((section, sectionIdx)=>{
+    let sAnswered = 0;
+    section.questions.forEach((_, qIdx)=>{
+      const key = sectionIdx+'-'+qIdx;
+      if(answeredState[key]) sAnswered++;
+    });
+    const row = document.createElement('div');
+    row.className = 'breakdown-row';
+    row.innerHTML = '<span>' + (sectionIdx+1) + '. ' + section.title + '</span><span>' + sAnswered + ' / ' + section.questions.length + ' respondidas</span>';
+    breakdown.appendChild(row);
+  });
+
+  finalSummary.classList.add('show');
+  finalSummary.scrollIntoView({behavior:'smooth', block:'center'});
+});
+</script>
+
+</body>
+</html>
